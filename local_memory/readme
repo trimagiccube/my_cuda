@@ -1,0 +1,27 @@
+link
+https://leimao.github.io/blog/CUDA-Local-Memory/
+1. build
+nvcc  -gencode arch=compute_89,code=sm_89 cuda_local_memory.cu -o cuda_local_memory
+nvcc --ptx -gencode arch=compute_89,code=sm_89 cuda_local_memory.cu -o cuda_local_memora.ptx
+
+we can see thera are local memory declaration
+	// .globl	_Z31running_mean_local_memory_arrayILi32EEvPKfPfi
+.visible .entry _Z31running_mean_local_memory_arrayILi32EEvPKfPfi(
+	.param .u64 _Z31running_mean_local_memory_arrayILi32EEvPKfPfi_param_0,
+	.param .u64 _Z31running_mean_local_memory_arrayILi32EEvPKfPfi_param_1,
+	.param .u32 _Z31running_mean_local_memory_arrayILi32EEvPKfPfi_param_2
+)
+{
+	.local .align 16 .b8 	__local_depot1[128];
+	.reg .b64 	%SP;
+	.reg .b64 	%SPL;
+	.reg .pred 	%p<99>;
+	.reg .f32 	%f<194>;
+	.reg .b32 	%r<232>;
+	.reg .b64 	%rd<82>;
+
+
+	mov.u64 	%SPL, __local_depot1;
+	ld.param.u64 	%rd44, [_Z31running_mean_local_memory_arrayILi32EEvPKfPfi_param_0];
+	ld.param.u64 	%rd45, [_Z31running_mean_local_memory_arrayILi32EEvPKfPfi_param_1];
+	ld.param.u32 	%r5, [_Z31running_mean_local_memory_arrayILi32EEvPKfPfi_param_2];
