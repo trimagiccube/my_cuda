@@ -1,0 +1,11 @@
+nvcc  -gencode arch=compute_89,code=sm_89 measure_performance.cu -o measure_performance
+
+result
+ aigc-kmd-development  yanxw  ⋯ > test > my_cuda > kernel_cold_hot_test  ᚠ main  ./measure_performance 
+ Device Name: NVIDIA GeForce RTX 4060 Ti
+ DRAM Size: 7.54004 GB
+ DRAM Peak Bandwitdh: 288.032 GB/s
+ L2 Cache Size: 32 MB
+ Hot Latency: 0.0334 ms
+ Cold Latency: 0.1598 ms
+
